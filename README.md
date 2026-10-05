@@ -1,61 +1,61 @@
 # Genetic Algorithm Exam Scheduling
 
-This project implements a Genetic Algorithm (GA) to solve the Exam Timetabling Problem.
+A Python application that creates an exam timetable by minimizing student scheduling conflicts with a Genetic Algorithm.
 
-The goal is to assign each course to an exam slot while minimizing scheduling conflicts and penalties.
+## Features
 
-## Constraints
+- Loads students, courses, and exam slots from the included Excel dataset.
+- Generates course-to-slot schedules with a Genetic Algorithm.
+- Penalizes same-slot conflicts, heavy same-day workloads, dense consecutive-day schedules, and use of more than five exam days.
+- Prints the best fitness and final schedule and displays a convergence plot.
 
-### Hard Constraints
-- No student can have two exams at the same time.
-- No student can have more than two exams in the same day.
+## Technologies & Tools
 
-### Soft Constraints
-- Avoid assigning two exams to the same student on the same day.
-- Avoid assigning four exams within two consecutive days.
-- Minimize the number of exam days used.
+- **Python** — application and Genetic Algorithm implementation.
+- **pandas** — reads the workbook data into the application.
+- **openpyxl** — provides Excel workbook support for pandas.
+- **Matplotlib** — plots the best fitness across generations.
 
-## Genetic Algorithm Components
+## Algorithm
 
-- Population Generation
-- Fitness Evaluation
-- Roulette Wheel Selection
-- Single Point Crossover
-- Mutation
+The application starts with 100 random chromosomes, where each gene assigns one course to one of 18 exam slots. It evaluates schedules with penalty-based fitness, selects parents through roulette-wheel selection, applies single-point crossover, and mutates genes at a 5% rate. After 200 generations, it returns the best schedule found.
 
-## Project Structure
+## Prerequisites
 
-```
-ExamSchedulingGA/
-│
-├── geneticAlgorithm/
-│   ├── fitness.py
-│   └── genetic_algorithm.py
-│
-├── models/
-│   ├── chromosome.py
-│   ├── course.py
-│   ├── slot.py
-│   └── student.py
-│
-├── data_loader.py
-├── main.py
-└── ga_exam_timetable_dataset.xlsx
-```
+- Python 3
+- pip
 
-## Dataset
-
-The dataset contains:
-
-- 95 Students
-- 22 Courses
-- 18 Available Exam Slots
-- 6 Exam Days
-
-## Run
+## Getting Started
 
 ```bash
+git clone https://github.com/ElyasNajeh/ExamSchedulingGA.git
+cd ExamSchedulingGA
+python -m pip install -r requirements.txt
 python main.py
 ```
 
-The program generates an exam schedule, displays the best fitness value found, prints the final schedule, and plots the convergence of the Genetic Algorithm.
+## Project Structure
+
+```text
+ExamSchedulingGA/
+|-- data/
+|   `-- ga_exam_timetable_dataset.xlsx  # Required scheduling input
+|-- docs/
+|   `-- COMP338_Project1.docx           # Project report
+|-- geneticAlgorithm/
+|   |-- fitness.py                      # Schedule penalties and fitness
+|   `-- genetic_algorithm.py            # GA operations and execution loop
+|-- models/
+|   |-- chromosome.py                   # Candidate schedule model
+|   |-- course.py                       # Course model
+|   |-- slot.py                         # Exam-slot model
+|   `-- student.py                      # Student model
+|-- data_loader.py                      # Excel data loading
+|-- main.py                             # Application entry point
+|-- README.md
+`-- requirements.txt
+```
+
+## Architecture
+
+`main.py` coordinates the application: it loads workbook data through `data_loader.py`, runs the algorithm in `geneticAlgorithm/`, prints the resulting schedule, and plots convergence. The `models/` classes represent students, courses, slots, and chromosomes, while `data/` contains the required input and `docs/` contains the supporting project report.

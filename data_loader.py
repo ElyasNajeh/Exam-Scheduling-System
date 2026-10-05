@@ -4,7 +4,7 @@ from models.student import Student
 from models.course import Course
 from models.slot import Slot
 
-file_path = "ga_exam_timetable_dataset.xlsx"
+file_path = "data/ga_exam_timetable_dataset.xlsx"
 
 
 def load_students():
