@@ -2,6 +2,11 @@
 
 A Python application that creates an exam timetable by minimizing student scheduling conflicts with a Genetic Algorithm.
 
+## Team Members
+
+- [Elyas Najeh](https://github.com/ElyasNajeh)
+- [Waleed Noubani](https://github.com/Waleed-Noubani)
+  
 ## Features
 
 - Loads students, courses, and exam slots from the included Excel dataset.
